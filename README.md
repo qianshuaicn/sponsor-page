@@ -1,22 +1,28 @@
-# Sponsor-Page
+# Donate-Page simple
 
-这是一系列整理好的捐赠按钮样式。
-
-![opencollective](https://opencollective.com/kaiyuan/tiers/backer/badge.svg?label=backer&color=brightgreen)
-
----
-
-## [Simple](https://kaiyuan.github.io/sponsor-page/simple/)
-
-![Donate Page Simple](https://i.imgur.com/AyAMkjR.gif)
-
----
-
-## [Drinks](https://kaiyuan.github.io/sponsor-page/drinks/)
 ![Donate Page Drinks](https://i.imgur.com/D0QexBl.gif)
 
----
+![coffee](https://kaiyuan.github.io/donate-page/drinks/images/coffee.png)
+Coffee icon by [jamneo](https://www.zcool.com.cn/work/ZMjQ3NTE2MA==.html)
 
-### License
+Chinese Font: [汉仪晨妹子](http://www.hanyi.com.cn/productdetail.php?id=610)
+
+## 直接 Fork 之后需要修改以下内容为你的账户
+
+```shell
+/script.js:13 #Github 项目连接
+
+/script.js:14 #PayPal.me 连接
+
+/script.js 18 - 20 #对应二维码
+```
+
+## 使用 `iframe` 嵌入页面的代码，高度至少 `240px`，宽度至少 `310px`！
+
+```html
+<iframe src="https://kaiyuan.github.io/donate-page/drinks/" style="overflow-x:hidden;overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;"  frameborder="0" scrolling="no"></iframe>
+```
+
+### Code License
 
 Released under the MIT license.
