@@ -1,82 +1,46 @@
-jQuery(document).ready(function () {
-
-var thisPage = $('body');
-var drink_box = $('#donate-box');
-var drink_box_s = $('#drinks-box-s');
-var icon_donate = $('.icon-donate');
-var donate_button = $('.donate-button');
-var donate_buttons = $('#drinks-button-box');
-var donate_button_bg = $('#drinks-button-bg');
-var drinks_qrcodes = $('#drinks-qrcodes');
-var drinks_qrcode = $('#drinks-qrcode');
-var isMobile = /Android|webOS|iPhone|iPad|BlackBerry/i.test(navigator.userAgent);
-
-var GithubLink  =   "https://github.com/Kaiyuan/donate-page/";
-var PayPalLink  =   "https://www.paypal.me/KaiyuanXie";
-$('#paypal-donate>a').href = PayPalLink;
-$('#github-box>a').href = GithubLink;
-var qrcodes = {
-    'btc_donate'	:	'../simple/images/BTCQR.png',	// 二维码路径
-    'alipay_donate'	:	'../simple/images/AliPayQR.png',	// 支付宝二维码
-    'alipay_donate_link'   :   'https://qr.alipay.com/3272611934645308',   // 支付宝二维码上的链接，必须换成自己的连接！！！手机点击会自动跳转到支付宝。
-    'wechat_donate'	:	'../simple/images/WeChanSQ.png'
+const modalData = {
+    alipay: {
+        title: "😘支付宝扫一扫投喂😆", //支付方式名称
+        qrCode: "images/Alipay.jpg", //收款码二维码图片
+        openUrl: "alipays://platformapi/startapp?appId=10000007&qrcode=https://qr.alipay.com/FKX15240TMKBTPVUNBW32E0", //收款码解码跳转
+        openText: "打开支付宝支付" //弹出页面显示
+    },
+    wechat: {
+        title: "😘微信扫一扫投喂😆", //支付方式名称
+        qrCode: "images/WeChat.jpg", //收款码二维码图片
+        openUrl: "wxp://f2f0gO6SgxgNkrt3bJ9o7nAai4WEIEqbF2EpABKYuhv4e9brXNMF_izplpfeeHH-8CAK", //收款码解码跳转，微信暂不可用
+        openText: "打开微信支付" //弹出页面显示
+    },
+    qq: {
+        title: "😘QQ扫一扫投喂😆", //支付方式名称
+        qrCode: "images/QQ.jpg", //收款码二维码图片
+        openUrl: "https://i.qianbao.qq.com/wallet/sqrcode.htm?m=tenpay&a=1&u=810779522&ac=CAEQgofOggMYrv-5tAY4AEIgMWExOWRlYmIyYjMxMjY0MTA0MTQ3ODhkZDlhNDk2ZDA%3D_xxx_sign&n=%E5%B1%B9%C2%A0 %C2%A0 %C2%A0&f=wallet", //收款码解码跳转
+        openText: "打开QQ支付" //弹出页面显示
+    }
 };
 
-var drinks_an = new Object();
-// 动画有 4 种状态，不同状态给对应 DOM 添加 css 动画
-drinks_an[0] = function(){
-    drink_box_s.removeClass('donate-animation-2 donate-animation-3').addClass('donate-animation-1');
-    donate_buttons.addClass('showBox');
-    setTimeout(() => {
-        donate_buttons.removeClass('showBox');
-    }, 300);
-    // console.log('donate-animation-1');
-}
-drinks_an[1] = function(){
-    drink_box_s.removeClass('donate-animation-1 donate-animation-3').addClass('donate-animation-2');
-    setTimeout(() => {
-        drink_box_s.removeClass('donate-animation-2');
-    }, 300);
-    // console.log('donate-animation-2');
-}
-drinks_an[2] = function(){
-    drink_box_s.removeClass('donate-animation-2 donate-animation-1').addClass('donate-animation-3');
-    drinks_qrcodes.addClass('showBox');
-    setTimeout(() => {
-        drinks_qrcodes.removeClass('showBox');
-    }, 300);
-    // console.log('donate-animation-3');
-}
-drinks_an[3] = function(){
-    drink_box_s.removeClass('donate-animation-3 donate-animation-2').addClass('donate-animation-4');
-    setTimeout(() => {
-        drink_box_s.removeClass('donate-animation-4');
-        drink_box_s.addClass('donate-animation-1');
-    }, 300);
-    // console.log('donate-animation-4');
+function openModal(type) {
+    const modal = document.getElementById("myModal");
+    const title = document.getElementById("modalTitle");
+    const qrCode = document.getElementById("qrCode");
+    const openApp = document.getElementById("openApp");
+
+    title.textContent = modalData[type].title;
+    qrCode.src = modalData[type].qrCode;
+    openApp.href = modalData[type].openUrl;
+    openApp.textContent = modalData[type].openText;
+    openApp.className = `open-app ${type}`;
+
+    modal.style.display = "block";
 }
 
-if (isMobile) {
-    donate_buttons.addClass('Mobile');
+function closeModal() {
+    document.getElementById("myModal").style.display = "none";
 }
 
-icon_donate.on('click',drinks_an[0]); // drinks 图标点击
-
-donate_button_bg.on('click',drinks_an[1]); // 隐藏 donate box
-
-donate_button.on('click',function(){
-    var thisID = $(this).attr("id");
-    if (isMobile && thisID === 'alipay_donate') {
-        // 当前网页在手机端打开跳转到支付宝 App
-        window.open(qrcodes['alipay_donate_link']);
-    } else {
-        // 当前网页在PC端打开
-    drinks_qrcode.css({'background-image' : 'url('+qrcodes[thisID]+')'});
-    drinks_an[2]();
-    // 显示二维码
+window.onclick = function(event) {
+    const modal = document.getElementById("myModal");
+    if (event.target == modal) {
+        modal.style.display = "none";
     }
-});
-
-drinks_qrcode.on('click',drinks_an[3]); // 隐藏二维码
-//
-})
+}

@@ -1,35 +1,58 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sponsor</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赞助小窝</title>
+    <!--个人logo显示-->
+    <link rel="shortcut icon" href="public/images/shortcut.png">
+    <link rel="bookmark" href="public/images/shortcut.png">
+    <link rel="icon" href="public/images/shortcut.png" type="image/x-icon" />
+    <!--个人logo苹果客户端显示-->
+    <link rel="apple-touch-icon" href="public/images/shortcut.png">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <section id="drinks-box">
-        <section id="drinks-box-s" class="drinks-button left-100">
-            <div id="drinks-icons" class="left-100 tr3">
-                <div id="coffee-donate" class="icon-donate"><img src="images/coffee.png" alt="coffee" data-creative
-                    ="https://www.zcool.com.cn/work/ZMjQ3NTE2MA==.html"></div>
+
+    <div class="container">
+        <!--个人信息-->
+        <div class="content">
+            <img src="public/images/logo.png" alt="头像" class="avatar">
+            <div class="user-name"><b>qianshuaiblog.cn</b></div>
+            <div class="thank-you">🍜感谢您的喂饭🍚</div>
+            <!--支付方式-->
+            <div class="buttons">
+                <div class="button alipay" onclick="openModal('alipay')">
+                    <img src="public/pay/Alipay.svg" alt="支付宝" class="pay-icon">
+                    <span>支付宝</span>
+                </div>
+                <div class="button wechat" onclick="openModal('wechat')">
+                    <img src="public/pay/WeChat.svg" alt="微信" class="pay-icon">
+                    <span>微信</span>
+                </div>
+                <div class="button qq" onclick="openModal('qq')">
+                    <img src="public/pay/QQ.svg" alt="QQ" class="pay-icon">
+                    <span>QQ</span>
+                </div>
+                <a class="button paypal" href="https://www.paypal.com/paypalme/wangcy350?locale.x=zh_XC" target="_blank">
+                    <img src="public/pay/PayPal.svg" alt="PayPal" class="pay-icon">
+                    <span>PayPal</span>
+                </a>
             </div>
-            <div id="drinks-button-box" class="tr3 left-100">
-                <div id="drinks-button-bg" class="left-100"></div>
-                <div id="github-box"><a href="https://github.com/Kaiyuan/donate-page/" target="_blank">Github</a></div>
-                <ul id="donate-buttons" class="list tr3">
-                    <li id="paypal_donate"><a href="https://www.paypal.me/KaiyuanXie" target="_blank">Paypal</a></li>
-                    <li id="btc_donate" class="donate-button">Bitcoin</li>
-                    <li id="alipay_donate" class="donate-button">AliPay</li>
-                    <li id="wechat_donate" class="donate-button">WeChat</li>
-                </ul>
-            </div>
-            <div id="drinks-qrcodes" class="left-100 tr3">
-                <div id="drinks-qrcode"></div>
-            </div>
-        </section>
-    </section>
+        </div>
+        <div class="footer">qianshuaiblog.cn</div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <img id="qrCode" src="/api/placeholder/200/200" alt="二维码" class="qr-code">
+            <a id="openApp" href="#" class="open-app" target="_blank">打开应用支付</a>
+        </div>
+    </div>
+    <!--修改支付配置在script.js-->
+    <script src="./script.js"></script>
 </body>
 </html>
