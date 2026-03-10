@@ -2,7 +2,7 @@ const modalData = {
     alipay: {
         title: "😘支付宝扫一扫投喂😆", //支付方式名称
         qrCode: "images/Alipay.jpg", //收款码二维码图片
-        openUrl: "alipays://platformapi/startapp?saId=10000007&qrcode=https://www.wmslz.com/s/t4Ym1q2160y", //收款码解码跳转
+        openUrl: "alipays://platformapi/startapp?appId=09999988&actionType=toAccount&goBack=NO&amount=0.01&userId=2088412977101161&memo=备注", //收款码解码跳转
         openText: "打开支付宝支付" //弹出页面显示
     },
     wechat: {
